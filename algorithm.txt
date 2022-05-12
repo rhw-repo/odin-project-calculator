@@ -1,0 +1,81 @@
+Problem: make an online basic maths calculator 
+
+//HTML, CSS
+User interface: 
+GUI representing the face of a traditional handheld calculator:
+
+Buttons for numbers through 0-9
+Buttons for add, subtract, multiply, divide and 'equals'
+Buttons to 'delete' any mistake when clicking on keys and another to "clear" the display and the calculator 'memory' to start afresh
+
+Representation of LED number display, within a vertical rectangular container (the calculator plastic 'casing')
+
+//HTML, CSS, Javascript
+Functionality: 
+Maths operations 
+Keys visibly depress on click 
+Numbers and sum results appear in display  
+
+// HTML, JavaScript
+Input: 
+user input (numbers) by clicking on calculator buttons 
+
+//HTML, CSS, JavaScript
+Output: 
+number in 'calculator' display 
+
+Inputs / Outputs 
+
+1) When the user inputs a number by clicking on a number button, it shows in the display
+2) When the user inputs an operator (+ - * /) it also shows in the display
+3) When the user inputs a second number, it also shows in the display
+4) When the user clicks on the equals button, calculate & display the sum created by all input if order was 1), 2), 3)   
+5) When the user clicks on the clear button, delete all values and reset the display to '0'
+
+
+Steps
+
+// JavaScript
+1) Functions and test in console 
+add
+subtract
+multiply
+divide
+
+2) "Function 'operate' that takes an operator and 2 numbers and then calls one of the above functions on the numbers", test in console // JavScript 
+
+
+// HTML
+// CSS (style colourways, rounded corners, size, animation & layout)
+3) Represent the face of a traditional handheld calculator with:
+
+    buttons numbered 0 through 9
+    + - / *   and = buttons
+    animation  (visible button depression on click)
+    'LED display'     
+    'clear' button
+    delete button for mistakes trying to click on desired buttons
+    . (decimal point) button 
+
+
+// HTML, JavaScript
+4) Function renders number in display onclick (number buttons), store value displayed in variable  // HTML, JavaScript
+
+on click clear button 'deletes' existing values to  & renders "0" in display
+
+"=" button does not do anything if operation() not called 
+
+Delete button removes any value input immediately before it
+
+. (decimal point) button disabled after one click . per number input before operand chosen and one click. per number afterwards (cannot produce 1.2.3 x 4.5.6, for example, only 1.2 x 4.5)
+
+
+5) Function stores values on number button click, on operand button click, on number button click,  then calls operation() 
+   Else renders an error message if input uses a 0 to divide by 
+   Render result in display on "=" button click with number rounded to manageable sized row of decimal places 
+   Sequence can be repeated using result as first value in next operation
+
+
+// JavaScript
+6. New function calls function 5) when user presses key (onkeydown) corresponding to a number or maths operator. 
+   User has choice of clicking on buttons or pressing keys on keyboard. 
