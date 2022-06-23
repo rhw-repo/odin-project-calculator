@@ -1,4 +1,5 @@
 The Odin Project Foundations - Project: Make An Online Calculator 
+
 Early look at development process - 
 
 First approach: 
