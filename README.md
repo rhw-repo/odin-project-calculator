@@ -1,3 +1,6 @@
+Runs the basic maths functions in the console to test 
+
+
 The Odin Project Foundations - Project: Make An Online Calculator 
 https://www.theodinproject.com/lessons/foundations-calculator
 
