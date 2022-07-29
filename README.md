@@ -2,7 +2,9 @@ The Odin Project Foundations - Project: Make An Online Calculator
 https://www.theodinproject.com/lessons/foundations-calculator
 
 Other work commitments put this project on hold a number of times for many weeks, recently revisited it:
+
 Main branch currently contains work in progress
+
 Other branches show 'development process', ideas, experiments 
 
 Currently the calculator will evaluate one sum
