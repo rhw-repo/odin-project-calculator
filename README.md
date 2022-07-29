@@ -16,7 +16,9 @@ Next steps are:
 - add in keyboard support
 
 Aim: basic maths calculator that simply does the sums you want it to. 
+
 Takes input by user clicking on buttons or entering numbers and operators with keyboard. 
+
 Outputs: to a 'calculator display panel' showing user input then the sum's total. 
 
 Skills: HTML, CSS, JavaScript 
