@@ -1,60 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins&family=Roboto:ital@1&display=swap');
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins&family=Roboto:ital@1&display=swap');
+  </style>
+</head>
 
-    </style>
-    <script src="https://kit.fontawesome.com/a25906fcbb.js" crossorigin="anonymous"></script>
-  </head>
+<body>
+  <h1>The Odin Project</h1>
+  <h2>Online Calculator</h2>
+  <br>
 
-  <body>
-    <h1>The Odin Project</h1>
-    <h2>Online Calculator</h2>
-    <br>
+  <div class="calc_container">
+    <div class="display_container" id='disp'></div>
+    <div class="btn_container">
+      <button class="num_btn">7</button>
+      <button class="num_btn">8</button>
+      <button class="num_btn">9</button>
 
-    <div class="calc_container">
-      <!--child of calc_container, sibling to btn_container-->
-      <div class="display_container" id='disp'></div>
-      <div class="btn_container">
-        <button class="num_btn">7</button>
-        <button class="num_btn">8</button>
-        <button class="num_btn">9</button>
+      <button class="op_btn">+</button>
 
-        <button class="op_btn">+</button>
+      <button class="num_btn">4</button>
+      <button class="num_btn">5</button>
+      <button class="num_btn">6</button>
 
-        <button class="num_btn">4</button>
-        <button class="num_btn">5</button>
-        <button class="num_btn">6</button>
+      <button class="op_btn">-</button>
 
-        <button class="op_btn">-</button>
+      <button class="num_btn">1</button>
+      <button class="num_btn">2</button>
+      <button class="num_btn">3</button>
 
-        <button class="num_btn">1</button>
-        <button class="num_btn">2</button>
-        <button class="num_btn">3</button>
+      <button class="op_btn">/</button>
 
-        <button class="op_btn">/</button>
+      <button class="num_btn">0</button>
 
-        <button class="num_btn">0</button>
+      <button class="util_btn">.</button>
 
-        <button class="util_btn">.</button>
+      <button class="util_btn" id='btn_clr'>CLR</button>
 
-        <button class="util_btn" id='btn_clr'>CLR</button>
+      <button class="op_btn">X</button>
 
-        <button class="op_btn">X</button>
-
-        <button class="util_btn" id='equals'>=</button>
-      </div>
+      <button class="util_btn" id='equals'>=</button>
     </div>
+  </div>
 
-
-  </body>
+  <script src="script.js"></script>
+</body>
 
 </html>

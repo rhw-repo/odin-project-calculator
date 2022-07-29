@@ -3,106 +3,105 @@ https://www.theodinproject.com/lessons/foundations-calculator
 */
 
 html {
-    height: 100%;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    margin: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-image: linear-gradient(0deg,
-        hsl(112deg 80% 80%) 0%,
-        hsl(101deg 73% 77%) 2%,
-        hsl(91deg 68% 74%) 4%,
-        hsl(82deg 64% 70%) 7%,
-        hsl(75deg 60% 67%) 10%,
-        hsl(68deg 57% 64%) 15%,
-        hsl(61deg 54% 61%) 21%,
-        hsl(55deg 58% 60%) 30%,
-        hsl(50deg 64% 59%) 40%,
-        hsl(45deg 69% 59%) 57%,
-        hsl(42deg 73% 59%) 99%);
-  }
-  
-  h1,
-  h2 {
-    font-family: 'Kdam Thmor Pro', 'Roboto', 'Poppins', Arial, sans-serif;
-    color: rgb(156, 43, 238);
-  }
-  
-  .calc_container {
-    display: grid;
-    width: 600px;
-    height: 700px;
-    border: solid 5px rgb(156, 43, 238);
-    background-color: hsl(132, 6%, 83%);
-    border-radius: 10%;
-    justify-content: space-center;
-    align-items: center;
-    margin-top: 20px;
-    padding-top: 20px 0;
-    padding-bottom: 30px;
-  
-  }
-  
-  .display_container {
-    display: grid;
-    grid-template-rows: auto;
-    background-color: #dae1de;
-    text-align: right;
-    box-shadow: 2px 2px 7px 1px;
-    height: 80px;
-    margin: 20px;
-    border-radius: 10%;
-    font-family: 'Poppins', Arial, sans-serif;
-    font-size: 48px;
-  
-  }
-  
-  .btn_container {
-    display: grid;
-    grid-template-columns: 70px 70px 70px 70px;
-    justify-content: space-evenly;
-  }
-  
-  .btn_container button {
-    background-color: #A2bc25;
-    color: black;
-    border-color: rgb(156, 43, 238);
-    border-radius: 20%;
-    box-shadow: 0 9px #999;
-  
-    width: 50px;
-    height: 50px;
-    justify-content: center;
-    margin: 8px;
-    font-family: 'Poppins', 'Roboto', Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    font-size: 32px;
-  }
-  
-  #btn_del,
-  #btn_clr {
-    font-size: 20px;
-  }
-  
-  #equals {
-    grid-row: 5;
-    grid-column: 3 / span 2;
-  }
-  
-  .btn_container button:hover {
-    background-color: #A2bc25
-  }
-  
-  .btn_container button:active {
-    background-color: #A2bc25;
-    box-shadow: 5px 5px 0 0 #666;
-    transform: translateY(6px);
-  }
-  
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(0deg,
+      hsl(112deg 80% 80%) 0%,
+      hsl(101deg 73% 77%) 2%,
+      hsl(91deg 68% 74%) 4%,
+      hsl(82deg 64% 70%) 7%,
+      hsl(75deg 60% 67%) 10%,
+      hsl(68deg 57% 64%) 15%,
+      hsl(61deg 54% 61%) 21%,
+      hsl(55deg 58% 60%) 30%,
+      hsl(50deg 64% 59%) 40%,
+      hsl(45deg 69% 59%) 57%,
+      hsl(42deg 73% 59%) 99%);
+}
+
+h1,
+h2 {
+  font-family: 'Kdam Thmor Pro', 'Roboto', 'Poppins', Arial, sans-serif;
+  color: rgb(156, 43, 238);
+}
+
+.calc_container {
+  display: grid;
+  width: 600px;
+  height: 700px;
+  border: solid 5px rgb(156, 43, 238);
+  background-color: hsl(132, 6%, 83%);
+  border-radius: 10%;
+  justify-content: space-center;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 20px 0;
+  padding-bottom: 30px;
+
+}
+
+.display_container {
+  display: grid;
+  grid-template-rows: auto;
+  background-color: #dae1de;
+  text-align: right;
+  box-shadow: 2px 2px 7px 1px;
+  height: 80px;
+  margin: 20px;
+  border-radius: 10%;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 48px;
+
+}
+
+.btn_container {
+  display: grid;
+  grid-template-columns: 70px 70px 70px 70px;
+  justify-content: space-evenly;
+}
+
+.btn_container button {
+  background-color: #A2bc25;
+  color: black;
+  border-color: rgb(156, 43, 238);
+  border-radius: 20%;
+  box-shadow: 0 9px #999;
+
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  margin: 8px;
+  font-family: 'Poppins', 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 32px;
+}
+
+#btn_del,
+#btn_clr {
+  font-size: 20px;
+}
+
+#equals {
+  grid-row: 5;
+  grid-column: 3 / span 2;
+}
+
+.btn_container button:hover {
+  background-color: #A2bc25
+}
+
+.btn_container button:active {
+  background-color: #A2bc25;
+  box-shadow: 5px 5px 0 0 #666;
+  transform: translateY(6px);
+}
