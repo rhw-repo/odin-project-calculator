@@ -1,60 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins&family=Roboto:ital@1&display=swap');
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="style.css">
 
-    </style>
-    <script src="https://kit.fontawesome.com/a25906fcbb.js" crossorigin="anonymous"></script>
-  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&family=Poppins&family=Roboto:ital@1&display=swap');
+  </style>
 
-  <body>
-    <h1>The Odin Project</h1>
-    <h2>Online Calculator</h2>
-    <br>
+</head>
 
-    <div class="calc_container">
-      <!--child of calc_container, sibling to btn_container-->
-      <div class="display_container" id='disp'></div>
-      <div class="btn_container">
-        <button class="num_btn">7</button>
-        <button class="num_btn">8</button>
-        <button class="num_btn">9</button>
+<body>
+  <h1>The Odin Project</h1>
+  <h2>Online Calculator</h2>
+  <br>
 
-        <button class="op_btn">+</button>
+  <div class="calc_container">
+    <div class="display_container" id='disp'>0</div>
 
-        <button class="num_btn">4</button>
-        <button class="num_btn">5</button>
-        <button class="num_btn">6</button>
-
-        <button class="op_btn">-</button>
-
-        <button class="num_btn">1</button>
-        <button class="num_btn">2</button>
-        <button class="num_btn">3</button>
-
-        <button class="op_btn">/</button>
-
-        <button class="num_btn">0</button>
-
-        <button class="util_btn">.</button>
-
-        <button class="util_btn" id='btn_clr'>CLR</button>
-
-        <button class="op_btn">X</button>
-
-        <button class="util_btn" id='equals'>=</button>
-      </div>
+    <div class="calculator_keys">
+      <button class="key--operator" data-action="add">+</button>
+      <button class="key--operator" data-action="subtract">-</button>
+      <button class="key--operator" data-action="multiply">&times;</button>
+      <button class="key--operator" data-action="divide">÷</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>0</button>
+      <button data-action="decimal">.</button>
+      <button data-action="clear" id="ac">AC</button>
+      <button class="key--equal" data-action="calculate">=</button>
     </div>
-
-
-  </body>
-
+  </div>
+  <script src="script.js"></script>
 </html>

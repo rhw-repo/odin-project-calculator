@@ -1,76 +1,118 @@
-let register0 = 0;
-let operator = '';
-let result = operate();
-let num1 = ' ';
-console.log(num1);
-let num2 = ' ';
-console.log(num2);
+ // The Odin Project Calculator Project - script.js to experiment with using an approach using data attributes
 
-// adds maths operations 
-const add = (num1, num2) => {
-  console.log(num1);
-  console.log(num2);
-  let total = num1 + num2;
-  console.log(total);
-  return total;
-}
+ 
+ // need to know when a key is pressed and which one it is
+ // need to listen for key being pressed, uses event delegation 
+ const calculator = document.querySelector(".calc_container");
+ const allTheButtons = document.querySelectorAll(".calculator_keys button");
+ const display = document.querySelector('.display_container');
+ 
+ console.log(allTheButtons.length);
+ // do not add parentheses to the name of the function within the eventListener, to avoid calling it there
+ //object(variable).method(event, function to call WITHOUT PARENTHESES, or anonymous function)
 
-//add(2, 4);
+ for (i = 0; i < allTheButtons.length; i++) {
+   allTheButtons[i].addEventListener("click", displayTheThing);
+ }
 
-const subtract = (num1, num2) => {
-  let total = num1 - num2;
-  console.log(total);
-  return total;
-}
+ function displayTheThing(e) {
+ const key = document.querySelectorAll('.calculator_keys button');
+ const action = key.dataset.action;
+   console.log(e.button);
+   document.getElementById('disp');
+   disp.textContent = key;
+   disp.append(key);
 
-//subtract(6, 4);
+   if (
+     action === 'add' ||
+     action === 'subtract' ||
+     action === 'multiply' ||
+     action === 'divide'
+   ) {
+     console.log('operator key!')
+   }
 
-const multiply = (num1, num2) => {
-  let total = num1 * num2;
-  console.log(total);
-  return total;
-}
+   if (action === 'decimal') {
+     console.log('decimal key!')
+   }
 
-//multiply(2, 4);
+   if (action === 'clear') {
+     console.log('clear key!')
+   }
 
-const divide = (num1, num2) => {
-  let total = num1 / num2;
-  console.log(total);
-  return total;
-}
+   if (action === 'calculate') {
+     console.log('equal key!')
+   }
 
-//divide(6, 3);
+   if (!action) {
+     console.log("number key!");
+   }
+ }
 
-function operate(operator, num1, num2) {
-  if (operator === '+') {
-    return add();
-  } else if (operator === '-') {
-    return subtract();
-  } else if (operator === '*') {
-    return multiply();
-  } else if (operator === '/') {
-    /*if (y === 0) { 
-    return 0} else { */
-    return divide();
-  }
-}
+ // 'WORKING OUT NOTES AREA '... ideas, quick lines of syntax to be fixed, etc: 
 
-//operate(add);
+ //const key = e.target;
+ //const action = key.dataset.action
 
-const displayOperator = document.querySelectorAll('.op_btn');
+ /*keys.addEventListener('click', (e) => {
+   console.log('A button was clicked');
+   const keyContent = key.textContent;
+  // if (e.target.matches('button')) {
+     display_container.textContent = keyContent;
+     display_container.append(keyContent);
+   }
+ })
 
-for (let i = 0; i < displayOperator.length; i++) {
-  displayOperator.item(i).addEventListener('click', () => {
-    register0 = document.getElementById('disp').textContent;
-    // displays operator
-    document.getElementById('disp').textContent = document.getElementById('disp').textContent + displayOperator.item(i).textContent;
-  })
-}
+ // no data-action attribute, pressed key is a number key 
+ if (!action) {
+   console.log("number key!");
+ }
 
-const displayNumbers = document.querySelectorAll('.num_btn');
-for (let i = 0; i < displayNumbers.length; i++) {
-  displayNumbers.item(i).addEventListener('click', () => {
-    register0 = document.getElementById('disp').textContent;
-    document.getElementById('disp').textContent = document.getElementById('disp').textContent + displayNumbers.item(i).textContent;
-  })
-}
+ /* if key had data-action that is either add, subtract, multiply or divide
+  then pressed key is an operator
+
+  if key had data-action:
+ "decimal", pressed key is the decimal point
+ data-action "clear", is clear button
+ data-action is "calculate", is equals key
+ 
+
+ if (
+   action === 'add' ||
+   action === 'subtract' ||
+   action === 'multiply' ||
+   action === 'divide'
+ ) {
+   console.log('operator key!')
+ }
+
+ if (action === 'decimal') {
+   console.log('decimal key!')
+ }
+
+ if (action === 'clear') {
+   console.log('clear key!')
+ }
+
+ if (action === 'calculate') {
+   console.log('equal key!')
+ }
+
+ /* next steps: complete
+
+ const display = document.querySelector('.display_container');
+ keys.addEventListener('click', e => {
+   if (e.target.matches('button')) {
+     const key = e.target;
+    // error action is not defined 
+    const action = key.dataset.action;
+     const keyContent = key.textContent;
+     const displayedNum = display_container.textContent;
+     
+   }
+ })
+ 
+ if (action === 'decimal') {
+   display_container.textContent = displayedNum + '.'
+ }
+ */
