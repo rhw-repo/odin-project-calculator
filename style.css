@@ -50,7 +50,6 @@ h5 {
   align-items: center;
   justify-content: flex-end;
   background: linear-gradient(to right, #666666, #333333);
-  /* Darker gradient */
   text-align: right;
   box-shadow: 0 0 0.625rem #999,
     0 0 1.25rem #999,
@@ -60,15 +59,11 @@ h5 {
   margin: 1.25rem;
   padding-right: 1.25rem;
   border-radius: 10%;
-  /*font-family: 'Poppins', Arial, sans-serif;*/
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   color: red;
   text-shadow: 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff0000;
 }
-
-/*text-shadow: 0 0 0.3125rem #ccc;
-}*/
 
 .btn_container {
   display: grid;
