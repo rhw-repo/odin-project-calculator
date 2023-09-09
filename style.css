@@ -16,53 +16,59 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-image: linear-gradient(0deg,
-      hsl(112deg 80% 80%) 0%,
-      hsl(101deg 73% 77%) 2%,
-      hsl(91deg 68% 74%) 4%,
-      hsl(82deg 64% 70%) 7%,
-      hsl(75deg 60% 67%) 10%,
-      hsl(68deg 57% 64%) 15%,
-      hsl(61deg 54% 61%) 21%,
-      hsl(55deg 58% 60%) 30%,
-      hsl(50deg 64% 59%) 40%,
-      hsl(45deg 69% 59%) 57%,
-      hsl(42deg 73% 59%) 99%);
+      #1a1a1a 0%,
+      #1f1f1f 50%,
+      #333333 100%);
 }
 
 h1,
-h2 {
-  font-family: 'Kdam Thmor Pro', 'Roboto', 'Poppins', Arial, sans-serif;
-  color: rgb(156, 43, 238);
+h2,
+h5 {
+  font-family: 'Roboto Slab', serif, 'Open Sans', sans-serif;
+  color: #ffffff;
 }
 
 .calc_container {
   display: grid;
-  width: 600px;
-  height: 700px;
-  border: solid 5px rgb(156, 43, 238);
+  width: 25rem;
+  height: 37.5rem;
+  border: solid 0.313rem #ffffff;
   background-color: hsl(132, 6%, 83%);
   border-radius: 10%;
   justify-content: space-center;
   align-items: center;
-  margin-top: 20px;
-  padding-top: 20px 0;
-  padding-bottom: 30px;
-
+  margin: 1rem auto 2rem auto;
+  padding-top: 1.25rem;
+  padding-bottom: 1.875rem;
+  box-shadow:
+    3px 3px 6px rgba(0, 0, 0, 0.2),
+    -3px -3px 6px rgba(255, 255, 255, 0.1);
 }
 
 .display_container {
-  display: grid;
-  grid-template-rows: auto;
-  background-color: #dae1de;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: linear-gradient(to right, #666666, #333333);
+  /* Darker gradient */
   text-align: right;
-  box-shadow: 2px 2px 7px 1px;
-  height: 80px;
-  margin: 20px;
+  box-shadow: 0 0 0.625rem #999,
+    0 0 1.25rem #999,
+    0 0 1.875rem #666,
+    0 0 2.5rem #666;
+  height: 5rem;
+  margin: 1.25rem;
+  padding-right: 1.25rem;
   border-radius: 10%;
-  font-family: 'Poppins', Arial, sans-serif;
-  font-size: 48px;
-
+  /*font-family: 'Poppins', Arial, sans-serif;*/
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  color: red;
+  text-shadow: 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff0000;
 }
+
+/*text-shadow: 0 0 0.3125rem #ccc;
+}*/
 
 .btn_container {
   display: grid;
@@ -70,38 +76,75 @@ h2 {
   justify-content: space-evenly;
 }
 
+/* general rules for all buttons */
 .btn_container button {
-  background-color: #A2bc25;
-  color: black;
-  border-color: rgb(156, 43, 238);
   border-radius: 20%;
-  box-shadow: 0 9px #999;
-
-  width: 50px;
-  height: 50px;
-  justify-content: center;
-  margin: 8px;
-  font-family: 'Poppins', 'Roboto', Arial, Helvetica, sans-serif;
+  width: 3.125rem;
+  height: 3.125rem;
+  margin: 0.5rem;
+  font-family: "Poppins", "Roboto", Arial, Helvetica, sans-serif;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
 }
 
-#btn_del,
-#btn_clr {
-  font-size: 20px;
+/* general button  active state rules */
+.btn_container button:active {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0.3125rem 0.3125rem 0 0 #666;
+  transform: translateY(0.375rem);
 }
 
+/* number buttons */
+.num_btn {
+  background-color: #ffffff;
+  color: black;
+}
+
+.num_btn:hover {
+  background-color: #f2f2f2;
+}
+
+.num_btn:active {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  transform: translateY(0.375rem);
+}
+
+/* utility and operator buttons */
+.util_btn,
+.op_btn {
+  background-color: #D3D9B6;
+}
+
+.util_btn:hover,
+.op_btn:hover {
+  background-color: #c7cfa3;
+}
+
+#btn_clr,
+#btn_backspace {
+  font-size: 1.25rem;
+}
+
+.pwr_btn {
+  background-color: black;
+  color: #ffffff;
+}
+
+#pwr_btn {
+  font-size: 1rem;
+}
+
+/* orange equals button */
 #equals {
   grid-row: 5;
   grid-column: 3 / span 2;
+  width: auto;
+  background-color: #FFA500;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
 }
 
-.btn_container button:hover {
-  background-color: #A2bc25
-}
-
-.btn_container button:active {
-  background-color: #A2bc25;
-  box-shadow: 5px 5px 0 0 #666;
-  transform: translateY(6px);
+#equals:hover {
+  background-color: #ffbb33;
 }
