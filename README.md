@@ -1,25 +1,23 @@
-The Odin Project Foundations - Project: Make An Online Calculator 
+### The Odin Project Foundations - Project: Make An Online Calculator 
 https://www.theodinproject.com/lessons/foundations-calculator
 
-Other work commitments put this project on hold a number of times for many weeks, recently revisited it:
+Main branch currently contains work in progress, on hold due to other projects:
+Currently the calculator will evaluate one sum. 
+Basic mathematical operations are unit-tested in the code.
+Other branches show 'development process', ideas, experiments. 
 
-Main branch currently contains work in progress
+## Technologies Used:
 
-Other branches show 'development process', ideas, experiments 
+- **HTML5**: Structure of the calculator.
+- **CSS3**: Styling and layout. Used flexbox and grid for layouts. 
+- **JavaScript**: For the calculator's functionality.
+- **Google Fonts**: For additional typography styles, specifically Lexend Deca
+, Open Sans, Roboto Slab, and Orbitron.
 
-Currently the calculator will evaluate one sum
-Next steps are:
-- allow it to evaluate a series of sums, 
-- add in decimal point, 'clear' and 'backspace' functionality, round of decimal point numbers, 
-- debug 
-- finish the HTML and CSS including accessibility checks 
-- add in keyboard support
+Inputs: user clicks on buttons or entering numbers and operators with keyboard. 
+Outputs:'calculator LED display panel' shows user input then the sum's total. 
 
-Aim: basic maths calculator that simply does the sums you want it to. 
+ ## License
 
-Takes input by user clicking on buttons or entering numbers and operators with keyboard. 
-
-Outputs: to a 'calculator display panel' showing user input then the sum's total. 
-
-Skills: HTML, CSS, JavaScript 
+Copyright &copy; R Westnidge Brown, 2023. All rights reserved.
 

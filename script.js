@@ -1,3 +1,7 @@
+// TODO: 
+// set default display as "0"
+// enable a second sum to be performed with total from first as starting number
+// functionality backspace, clear everything, decimal point & power buttons 
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -9,8 +13,6 @@ const operatorKeys = document.querySelectorAll('.op_btn');
 const numberKeys = document.querySelectorAll('.num_btn');
 const clearButton = document.getElementById('btn_clr');
 const equalButton = document.getElementById('equals');
-
-
 
 // adds basic maths operations 
 const add = (num1, num2) => {
@@ -62,8 +64,6 @@ function operate(num1, operator, num2) {
   }
 }
 
-
-
 //  sets behaviour onclick for any number button user clicks on 
 for (let i = 0; i < numberKeys.length; i++) {
   numberKeys.item(i).addEventListener('click', e => updateDisplay(e));
@@ -77,11 +77,10 @@ for (let i = 0; i < operatorKeys.length; i++) {
 //  sets behaviour onclick when user clicks on equals button 
 equals.addEventListener('click', e => handleEquals(e));
 
-
-
 // saves numbers to global variables, renders numbers to display_container
 function updateDisplay(e) {
-  if (isOperatorPressed && document.getElementById("disp").textContent.match(/[\+|\-|\X|\/]\d*/)) {
+  if (isOperatorPressed &&
+    document.getElementById("disp").textContent.match(/[\+|\-|\X|\/]\d*/)) {
     document.getElementById("disp").textContent = '';
   }
   displayValue = document.getElementById("disp").textContent + e.target.textContent;
@@ -108,7 +107,6 @@ function handleEquals(e) {
 }
 
 // Adds tests in development phase 
-// Your calculator code here...
 
 // Test cases
 function runTests() {
@@ -176,6 +174,4 @@ function runTests() {
 runTests();
 
 
-// next steps: 
-//enable a second sum to be performed 
-// complete the HTML layout, restyle the title, finish layout HTML, CSS 
+
