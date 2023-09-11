@@ -60,7 +60,7 @@ function operate(num1, operator, num2) {
     return multiply(num1, num2);
   } else if (operator === '/') {
     if (num1 === 0) {
-      return 0
+      return "Don't B Daft"
     } else {
       return divide(num1, num2);
     }
