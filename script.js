@@ -8,6 +8,7 @@ let num2 = 0;
 let total = 0;
 let displayValue = '';
 let isOperatorPressed = false;
+let currentDisplay = "";
 
 const operatorKeys = document.querySelectorAll('.op_btn');
 const numberKeys = document.querySelectorAll('.num_btn');
@@ -77,14 +78,40 @@ for (let i = 0; i < operatorKeys.length; i++) {
 //  sets behaviour onclick when user clicks on equals button 
 equals.addEventListener('click', e => handleEquals(e));
 
-// saves numbers to global variables, renders numbers to display_container
-function updateDisplay(e) {
-  if (isOperatorPressed &&
-    document.getElementById("disp").textContent.match(/[\+|\-|\X|\/]\d*/)) {
-    document.getElementById("disp").textContent = '';
-  }
-  displayValue = document.getElementById("disp").textContent + e.target.textContent;
+// sets behaviour onClick when user clicks on CE button
+clearButton.addEventListener("click", e => handleClear(e));
+
+// resets the variables to zero to clear the last input
+function handleClear(e) {
+  num1 = 0;
+  console.log(num1);
+  num2 = 0;
+  console.log(num2);
+  total = 0;
+  console.log(total);
+  isOperatorPressed = false;
+  console.log(isOperatorPressed);
+  //sets display to zero for use with currentDisplay flag
+  displayValue = "0";
   document.getElementById("disp").textContent = displayValue;
+}
+
+// saves numbers to global variables, renders numbers to display_container
+// sets display to zero after handleClear() called 
+function updateDisplay(e) {
+  currentDisplay = document.getElementById("disp").textContent;
+
+  if (isOperatorPressed && currentDisplay.match(/[\+|\-|\X|\/]\d*/)) {
+    currentDisplay = '';
+  }
+  if (currentDisplay === "0") {
+    displayValue = e.target.textContent;
+  } else {
+    displayValue = currentDisplay + e.target.textContent;
+  }
+  // update display
+  document.getElementById("disp").textContent = displayValue;
+  // update num1 or num2
   if (isOperatorPressed) {
     num2 = parseFloat(displayValue);
   } else {
