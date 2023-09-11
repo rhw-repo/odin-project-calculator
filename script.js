@@ -1,7 +1,6 @@
 // TODO: 
-// set default display as "0"
 // enable a second sum to be performed with total from first as starting number
-// functionality backspace & decimal point buttons 
+// functionality backspace button ("C" button) 
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -142,7 +141,13 @@ function updateDisplay(e) {
 //saves operator to global variables, renders operator to display_container
 function handleOperator(e) {
   if (!isPowerOn) return;
-  num1 = parseFloat(displayValue);
+  // experiment to allow subsequent sums using total as num1 
+  if (total) {
+    num1 = total;
+  } else {
+     num1 = parseFloat(displayValue);
+  }
+
   displayValue = e.target.textContent;
   document.getElementById("disp").textContent = displayValue;
   operator = e.target.textContent;
