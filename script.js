@@ -1,7 +1,7 @@
 // TODO: 
-// set default display as "0"
+// enable power button, set default display as "0"
 // enable a second sum to be performed with total from first as starting number
-// functionality backspace, clear everything, decimal point & power buttons 
+// functionality backspace & decimal point buttons 
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -128,7 +128,8 @@ function handleOperator(e) {
   isOperatorPressed = true;
 }
 
-// calls operate() when equals button clicked, renders value returned to display_container 
+// calls operate() when equals button clicked
+// renders value returned to display_container 
 function handleEquals(e) {
   document.getElementById('disp').textContent = operate(num1, operator, num2);
 }
@@ -197,7 +198,6 @@ function runTests() {
   }
 }
 
-// Run the tests
 runTests();
 
 
