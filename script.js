@@ -9,11 +9,13 @@ let total = 0;
 let displayValue = '';
 let isOperatorPressed = false;
 let currentDisplay = "";
+let isPowerOn = false;
 
 const operatorKeys = document.querySelectorAll('.op_btn');
 const numberKeys = document.querySelectorAll('.num_btn');
 const clearButton = document.getElementById('btn_clr');
 const equalButton = document.getElementById('equals');
+const pwrButton = document.getElementById("pwr_btn");
 
 // adds basic maths operations 
 const add = (num1, num2) => {
@@ -81,8 +83,25 @@ equals.addEventListener('click', e => handleEquals(e));
 // sets behaviour onClick when user clicks on CE button
 clearButton.addEventListener("click", e => handleClear(e));
 
+// sets behaviour onClick when user clicks on PWR button
+pwrButton.addEventListener("click", e => handlePWR(e));
+
+function handlePWR(e) {
+  if (isPowerOn) {
+    displayValue = "";
+    document.getElementById("disp").textContent = "";
+    // additional code to disable other buttons and functionality 
+  } else {
+    displayValue = "0";
+    document.getElementById("disp").textContent = displayValue;
+  }
+  // toggle on off state 
+  isPowerOn = !isPowerOn;
+}
+
 // resets the variables to zero to clear the last input
 function handleClear(e) {
+  if (!isPowerOn) return;
   num1 = 0;
   console.log(num1);
   num2 = 0;
@@ -99,6 +118,7 @@ function handleClear(e) {
 // saves numbers to global variables, renders numbers to display_container
 // sets display to zero after handleClear() called 
 function updateDisplay(e) {
+  if (!isPowerOn) return;
   currentDisplay = document.getElementById("disp").textContent;
 
   if (isOperatorPressed && currentDisplay.match(/[\+|\-|\X|\/]\d*/)) {
@@ -121,6 +141,7 @@ function updateDisplay(e) {
 
 //saves operator to global variables, renders operator to display_container
 function handleOperator(e) {
+  if (!isPowerOn) return;
   num1 = parseFloat(displayValue);
   displayValue = e.target.textContent;
   document.getElementById("disp").textContent = displayValue;
@@ -131,6 +152,7 @@ function handleOperator(e) {
 // calls operate() when equals button clicked
 // renders value returned to display_container 
 function handleEquals(e) {
+  if (!isPowerOn) return;
   document.getElementById('disp').textContent = operate(num1, operator, num2);
 }
 
