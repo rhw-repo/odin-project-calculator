@@ -1,6 +1,6 @@
 // TODO: 
-// test functionality for subsequent operations and those using decimals 
-// functionality backspace button ("C" button) 
+// update the operations tests and move into a separate file
+// functionality backspace button ("C" button) & decimal button (".")
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -92,7 +92,8 @@ function handlePWR(e) {
     displayValue = "0";
     document.getElementById("disp").textContent = displayValue;
   }
-  // toggle state by assigning "off" state to "on" on after clicking PWR button
+  // toggle the calculator's power state between 
+  // "on" & "off" when PWR button clicked
   isPowerOn = !isPowerOn;
 }
 
@@ -116,6 +117,16 @@ function handleClear(e) {
 // based on user input & current state 
 function updateDisplay(e) {
   if (!isPowerOn) return;
+
+   // checking if limitation of input to 8 characters max is working
+   console.log("Display Value Length:", displayValue.length);
+   console.log("Display Value:", displayValue);
+
+  // limit input to 8 chars max 
+  if (displayValue.length >=8) {
+    return;
+  }
+
   if (isOperatorPressed) {
     displayValue = '';
     // resets state of isOperatorPressed ready for next inputs
@@ -141,8 +152,8 @@ function updateDisplay(e) {
 // enables handling of plus, minus, subtract and divide operators 
 function handleOperator(e) {
   if (!isPowerOn) return;
-// check for existing calculation, if so -
-// finalize that calculation and prepare for a new operation 
+  // check for existing calculation, if so -
+  // finalize that calculation and prepare for a new operation 
   if (num1 && operator) {
     num2 = parseFloat(displayValue);
     total = operate(num1, operator, num2);
@@ -153,11 +164,21 @@ function handleOperator(e) {
     num1 = parseFloat(displayValue);
     isOperatorPressed = true;
   }
-// assigns operator to displayValue to render to display_container
+  // assigns operator to displayValue to render to display_container
   operator = e.target.textContent;
   isOperatorPressed = true;
-  displayValue=  operator;
+  displayValue = operator;
   document.getElementById("disp").textContent = displayValue;
+}
+
+// called in handleEquals() to limit display of calculation(s) to 8 characters
+function roundForDisplay(num) {
+  let string= num.toString();
+  if (string.length > 8) {
+    return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
+  } else {
+    return string;
+  }
 }
 
 // when equals button clicked, checks if calculator is "turned on", if so - 
@@ -165,24 +186,27 @@ function handleOperator(e) {
 function handleEquals(e) {
   if (!isPowerOn) return;
 
+  // perform calculation if first number and operator are defined
   if (num1 && operator) {
     num2 = parseFloat(displayValue);
     total = operate(num1, operator, num2);
-    document.getElementById("disp").textContent = total;
+    // rounds off display of total if exceeds 8 characters  
+    let displayTotal = roundForDisplay(total);
+    document.getElementById("disp").textContent = displayTotal;
+    // retain original (full precision) total for any further calculations
     num1 = total;
     num2 = 0;
     operator = null;
-    isOperatorPressed = true; 
+    isOperatorPressed = true;
     // convert total to string for consistent handling of dislay values
     // and calculations (example: floating point calculations)
-    displayValue = total.toString(); 
+    displayValue = total.toString();
   } else {
     document.getElementById("disp").textContent = "Error";
   }
 }
 
-
-// Adds tests in development phase 
+// Adds basic maths operations tests in development phase 
 
 // Test cases
 function runTests() {
@@ -246,7 +270,6 @@ function runTests() {
   }
 }
 
-// Run the tests
 runTests();
 
 

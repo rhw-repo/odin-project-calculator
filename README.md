@@ -4,7 +4,7 @@ https://www.theodinproject.com/lessons/foundations-calculator
 Main branch currently contains work in progress, on hold due to other projects:
 Currently the calculator will evaluate one sum. 
 Basic mathematical operations are unit-tested in the code.
-Other branches show 'development process', ideas, experiments. 
+Other branches show early steps in 'development process', ideas, experiments. 
 
 ## Technologies Used:
 
