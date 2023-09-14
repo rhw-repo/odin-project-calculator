@@ -1,6 +1,5 @@
 // TODO: 
-// update the operations tests and move into a separate file
-// functionality backspace button ("C" button) & decimal button (".")
+// modify functionality decimal button to avoid floating point calculations
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -14,6 +13,7 @@ const numberKeys = document.querySelectorAll('.num_btn');
 const clearButton = document.getElementById('btn_clr');
 const equalButton = document.getElementById('equals');
 const pwrButton = document.getElementById("pwr_btn");
+const backspaceButton = document.getElementById("btn_backspace")
 
 // basic maths operations called by operate()
 const add = (num1, num2) => {
@@ -79,6 +79,9 @@ equals.addEventListener('click', e => handleEquals(e));
 // enables key to clear all values and the display by calling handleClear()  
 clearButton.addEventListener("click", e => handleClear(e));
 
+// enables key to delete last one number or operator by calling xxxxx()
+backspaceButton.addEventListener('click', e => handleBackspace(e));
+
 // enables key to simulate "power on & off" by calling handlePWR()
 pwrButton.addEventListener("click", e => handlePWR(e));
 
@@ -110,6 +113,29 @@ function handleClear(e) {
   console.log(isOperatorPressed);
   displayValue = "0";
   document.getElementById("disp").textContent = displayValue;
+}
+
+// checks if calculator "turned on", exits if not
+// deletes last character if "C" key clicked 
+function handleBackspace(e) {
+  if (!isPowerOn) return;
+
+  // delete operator if is last char
+  if (isOperatorPressed) {
+    // resets operator ready for further use 
+    operator = "";
+    isOperatorPressed = false; 
+  } else {
+    // remove last char from displayValue
+    displayValue = displayValue.slice(0, -1);
+    document.getElementById("disp").textContent = displayValue;
+
+    if (operator) {
+      num2 = parseFloat(displayValue);
+    } else {
+      num1 = parseFloat(displayValue);
+    }
+  }
 }
 
 // checks if calculator "turned on", exits if not
@@ -205,72 +231,4 @@ function handleEquals(e) {
     document.getElementById("disp").textContent = "Error";
   }
 }
-
-// Adds basic maths operations tests in development phase 
-
-// Test cases
-function runTests() {
-  let passed = true;
-
-  // Test for add
-  if (add(2, 3) !== 5) {
-    console.log('Failed: Add');
-    passed = false;
-  }
-
-  // Test for subtract
-  if (subtract(5, 3) !== 2) {
-    console.log('Failed: Subtract');
-    passed = false;
-  }
-
-  // Test for multiply
-  if (multiply(2, 3) !== 6) {
-    console.log('Failed: Multiply');
-    passed = false;
-  }
-
-  // Test for divide
-  if (divide(6, 3) !== 2) {
-    console.log('Failed: Divide');
-    passed = false;
-  }
-
-  // Test for divide by zero
-  if (divide(6, 0) !== Infinity) {
-    console.log('Failed: Divide by zero');
-    passed = false;
-  }
-
-  // Test for operate function
-  if (operate(3, '+', 4) !== 7) {
-    console.log('Failed: Operate add');
-    passed = false;
-  }
-
-  if (operate(7, '-', 3) !== 4) {
-    console.log('Failed: Operate subtract');
-    passed = false;
-  }
-
-  if (operate(3, 'X', 2) !== 6) {
-    console.log('Failed: Operate multiply');
-    passed = false;
-  }
-
-  if (operate(8, '/', 4) !== 2) {
-    console.log('Failed: Operate divide');
-    passed = false;
-  }
-
-  if (passed) {
-    console.log('All tests passed!');
-  } else {
-    console.log('Some tests failed.');
-  }
-}
-
-runTests();
-
-
 
