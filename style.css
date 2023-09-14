@@ -28,6 +28,8 @@ h5 {
   color: #ffffff;
 }
 
+/* general rules for the outer "casing" of the calculator 
+(simulates a retro style hand-held device) */
 .calc_container {
   display: grid;
   width: 25rem;
@@ -45,6 +47,7 @@ h5 {
     -3px -3px 6px rgba(255, 255, 255, 0.1);
 }
 
+/* the calculator's simulation of an "LED display" */
 .display_container {
   display: flex;
   align-items: center;
@@ -65,6 +68,7 @@ h5 {
   text-shadow: 0 0 4px #ff0000, 0 0 6px #ff0000, 0 0 8px #ff0000;
 }
 
+/* div housing the buttons */
 .btn_container {
   display: grid;
   grid-template-columns: 70px 70px 70px 70px;
@@ -84,7 +88,7 @@ h5 {
   transition: all 0.3s ease;
 }
 
-/* general button  active state rules */
+/* general button active state rules */
 .btn_container button:active {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 0.3125rem 0.3125rem 0 0 #666;
@@ -122,6 +126,7 @@ h5 {
   font-size: 1.25rem;
 }
 
+/* power button */
 .pwr_btn {
   background-color: black;
   color: #ffffff;

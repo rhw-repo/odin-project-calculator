@@ -1,15 +1,12 @@
 // TODO: 
-// enable a second sum to be performed with total from first as starting number
-// functionality backspace & decimal point buttons 
-// update the operations tests and move into separate file 
-
+// update the operations tests and move into a separate file
+// functionality backspace button ("C" button) & decimal button (".")
 let operator = '';
 let num1 = 0;
 let num2 = 0;
 let total = 0;
 let displayValue = '';
 let isOperatorPressed = false;
-let currentDisplay = "";
 let isPowerOn = false;
 
 const operatorKeys = document.querySelectorAll('.op_btn');
@@ -18,7 +15,7 @@ const clearButton = document.getElementById('btn_clr');
 const equalButton = document.getElementById('equals');
 const pwrButton = document.getElementById("pwr_btn");
 
-// adds basic maths operations 
+// basic maths operations called by operate()
 const add = (num1, num2) => {
   console.log(num1);
   console.log(num2);
@@ -27,31 +24,31 @@ const add = (num1, num2) => {
   return total;
 }
 
-const subtract = (a, b) => {
+const subtract = (num1, num2) => {
   console.log(num1);
   console.log(num2);
-  total = a - b;
+  total = num1 - num2;
   console.log(total);
   return total;
 }
 
-const multiply = (a, b) => {
+const multiply = (num1, num2) => {
   console.log(num1);
   console.log(num2);
-  total = a * b;
+  total = num1 * num2;
   console.log(total);
   return total;
 }
 
-const divide = (a, b) => {
+const divide = (num1, num2) => {
   console.log(num1);
   console.log(num2);
-  total = a / b;
+  total = num1 / num2;
   console.log(total);
   return total;
 }
 
-// calls appropriate basic maths functions according to operator 
+// calls appropriate basic maths function according to operator 
 function operate(num1, operator, num2) {
   if (operator === '+') {
     return add(num1, num2);
@@ -61,42 +58,42 @@ function operate(num1, operator, num2) {
     return multiply(num1, num2);
   } else if (operator === '/') {
     if (num1 === 0) {
-      return 0
+      return "Don't B Daft"
     } else {
       return divide(num1, num2);
     }
   }
 }
 
-//  sets behaviour onclick for any number button user clicks on 
+// enables key to append number key value to display when clicked 
 for (let i = 0; i < numberKeys.length; i++) {
   numberKeys.item(i).addEventListener('click', e => updateDisplay(e));
 }
-
-//  sets behaviour onclick for any operator button user clicks on 
+// enables key to append operator key value to display when clicked 
 for (let i = 0; i < operatorKeys.length; i++) {
   operatorKeys.item(i).addEventListener('click', e => handleOperator(e));
 }
-
-//  sets behaviour onclick when user clicks on equals button 
+//  enables key to equate the sum when clicked by calling handleEquals()
 equals.addEventListener('click', e => handleEquals(e));
 
-// sets behaviour onClick when user clicks on CE button
+// enables key to clear all values and the display by calling handleClear()  
 clearButton.addEventListener("click", e => handleClear(e));
 
-// sets behaviour onClick when user clicks on PWR button
+// enables key to simulate "power on & off" by calling handlePWR()
 pwrButton.addEventListener("click", e => handlePWR(e));
 
+// simulates "power on & off" by only enabling input & display if "on"
 function handlePWR(e) {
   if (isPowerOn) {
     displayValue = "";
     document.getElementById("disp").textContent = "";
-    // additional code to disable other buttons and functionality 
+    // else disable other buttons and functionality 
   } else {
     displayValue = "0";
     document.getElementById("disp").textContent = displayValue;
   }
-  // toggle on off state 
+  // toggle the calculator's power state between 
+  // "on" & "off" when PWR button clicked
   isPowerOn = !isPowerOn;
 }
 
@@ -111,53 +108,105 @@ function handleClear(e) {
   console.log(total);
   isOperatorPressed = false;
   console.log(isOperatorPressed);
-  //sets display to zero for use with currentDisplay flag
   displayValue = "0";
   document.getElementById("disp").textContent = displayValue;
 }
 
-// saves numbers to global variables, renders numbers to display_container
-// sets display to zero after handleClear() called 
+// checks if calculator "turned on", exits if not
+// responds to user inputs to update display, 
+// based on user input & current state 
 function updateDisplay(e) {
   if (!isPowerOn) return;
-  currentDisplay = document.getElementById("disp").textContent;
 
-  if (isOperatorPressed && currentDisplay.match(/[\+|\-|\X|\/]\d*/)) {
-    currentDisplay = '';
+   // checking if limitation of input to 8 characters max is working
+   console.log("Display Value Length:", displayValue.length);
+   console.log("Display Value:", displayValue);
+
+  // limit input to 8 chars max 
+  if (displayValue.length >=8) {
+    return;
   }
-  if (currentDisplay === "0") {
+
+  if (isOperatorPressed) {
+    displayValue = '';
+    // resets state of isOperatorPressed ready for next inputs
+    isOperatorPressed = false;
+  }
+  // prevent 0 from being leading digit
+  if (displayValue === '0' || displayValue === 'Err') {
     displayValue = e.target.textContent;
   } else {
-    displayValue = currentDisplay + e.target.textContent;
+    // if displayValue not "0" or "Err" append to current displayValue 
+    displayValue += e.target.textContent;
   }
-  // update display
+  // updates display container content
   document.getElementById("disp").textContent = displayValue;
-  // update num1 or num2
-  if (isOperatorPressed) {
+  // update num1 or num2 based on whether an operator is currently selected
+  if (operator) {
     num2 = parseFloat(displayValue);
   } else {
     num1 = parseFloat(displayValue);
   }
 }
 
-//saves operator to global variables, renders operator to display_container
+// enables handling of plus, minus, subtract and divide operators 
 function handleOperator(e) {
   if (!isPowerOn) return;
-  num1 = parseFloat(displayValue);
-  displayValue = e.target.textContent;
-  document.getElementById("disp").textContent = displayValue;
+  // check for existing calculation, if so -
+  // finalize that calculation and prepare for a new operation 
+  if (num1 && operator) {
+    num2 = parseFloat(displayValue);
+    total = operate(num1, operator, num2);
+    num1 = total;
+    num2 = 0;
+    isOperatorPressed = true;
+  } else {
+    num1 = parseFloat(displayValue);
+    isOperatorPressed = true;
+  }
+  // assigns operator to displayValue to render to display_container
   operator = e.target.textContent;
   isOperatorPressed = true;
+  displayValue = operator;
+  document.getElementById("disp").textContent = displayValue;
 }
 
-// calls operate() when equals button clicked
-// renders value returned to display_container 
+// called in handleEquals() to limit display of calculation(s) to 8 characters
+function roundForDisplay(num) {
+  let string= num.toString();
+  if (string.length > 8) {
+    return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
+  } else {
+    return string;
+  }
+}
+
+// when equals button clicked, checks if calculator is "turned on", if so - 
+// completes calculation, updates display, prepares for any further operations 
 function handleEquals(e) {
   if (!isPowerOn) return;
-  document.getElementById('disp').textContent = operate(num1, operator, num2);
+
+  // perform calculation if first number and operator are defined
+  if (num1 && operator) {
+    num2 = parseFloat(displayValue);
+    total = operate(num1, operator, num2);
+    // rounds off display of total if exceeds 8 characters  
+    let displayTotal = roundForDisplay(total);
+    document.getElementById("disp").textContent = displayTotal;
+    // retain original (full precision) total for any further calculations
+    num1 = total;
+    num2 = 0;
+    operator = null;
+    isOperatorPressed = true;
+    // convert total to string for consistent handling of dislay values
+    // and calculations (example: floating point calculations)
+    displayValue = total.toString();
+  } else {
+    document.getElementById("disp").textContent = "Error";
+  }
 }
 
-// Adds tests in development phase 
+// Adds basic maths operations tests in development phase 
 
 // Test cases
 function runTests() {
