@@ -1,7 +1,8 @@
 // TODO: 
-// enable power button, set default display as "0"
 // enable a second sum to be performed with total from first as starting number
 // functionality backspace & decimal point buttons 
+// update the operations tests and move into separate file 
+
 let operator = '';
 let num1 = 0;
 let num2 = 0;
