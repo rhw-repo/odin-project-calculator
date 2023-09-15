@@ -115,7 +115,31 @@ function handleClear(e) {
   document.getElementById("disp").textContent = displayValue;
 }
 
-// checks if calculator "turned on", exits if not
+function handleBackspace(e) {
+  if (!isPowerOn) return;
+
+  // If the last character is an operator, remove it.
+  if (isOperatorPressed) {
+    displayValue = num1.toString();  // Set displayValue back to num1
+    operator = "";  // Reset the operator
+    isOperatorPressed = false;  // Update the flag
+  } else {
+    // Remove the last character from displayValue
+    displayValue = displayValue.slice(0, -1);
+  }
+
+  // Update the display
+  document.getElementById("disp").textContent = displayValue;
+
+  // Update num1 or num2 based on the current value of operator
+  if (operator) {
+    num2 = parseFloat(displayValue);
+  } else {
+    num1 = parseFloat(displayValue);
+  }
+}
+
+/* checks if calculator "turned on", exits if not
 // deletes last character if "C" key clicked 
 function handleBackspace(e) {
   if (!isPowerOn) return;
@@ -136,7 +160,7 @@ function handleBackspace(e) {
       num1 = parseFloat(displayValue);
     }
   }
-}
+}*/
 
 // checks if calculator "turned on", exits if not
 // responds to user inputs to update display, 
