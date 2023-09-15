@@ -1,8 +1,8 @@
 ### The Odin Project Foundations - Project: Make An Online Calculator 
 https://www.theodinproject.com/lessons/foundations-calculator
 
-Main branch currently contains work in progress, on hold due to other projects:
-Currently the calculator will evaluate one sum. 
+Main branch currently contains work in progress.
+Project was paused for approx 12 months while building another full stack app. 
 Basic mathematical operations are unit-tested in the code.
 Other branches show early steps in 'development process', ideas, experiments. 
 
