@@ -115,19 +115,16 @@ function handleClear(e) {
   document.getElementById("disp").textContent = displayValue;
 }
 
-// experiment 
-let isBackspaceDisabled = false;
-
 // checks if calculator "turned on", exits if not
 // deletes last character if "C" key clicked 
 function handleBackspace(e) {
-  if (!isPowerOn || isBackspaceDisabled) return;
+  if (!isPowerOn) return;
 
   // delete operator if is last char
   if (isOperatorPressed) {
     // resets operator ready for further use 
     operator = "";
-    isOperatorPressed = false;
+    isOperatorPressed = false; 
   } else {
     // remove last char from displayValue
     displayValue = displayValue.slice(0, -1);
@@ -139,7 +136,6 @@ function handleBackspace(e) {
       num1 = parseFloat(displayValue);
     }
   }
-  isBackspaceDisabled = true;
 }
 
 // checks if calculator "turned on", exits if not
@@ -148,12 +144,12 @@ function handleBackspace(e) {
 function updateDisplay(e) {
   if (!isPowerOn) return;
 
-  // checking if limitation of input to 8 characters max is working
-  console.log("Display Value Length:", displayValue.length);
-  console.log("Display Value:", displayValue);
+   // checking if limitation of input to 8 characters max is working
+   console.log("Display Value Length:", displayValue.length);
+   console.log("Display Value:", displayValue);
 
   // limit input to 8 chars max 
-  if (displayValue.length >= 8) {
+  if (displayValue.length >=8) {
     return;
   }
 
@@ -177,7 +173,6 @@ function updateDisplay(e) {
   } else {
     num1 = parseFloat(displayValue);
   }
-  isBackspaceDisabled = false;
 }
 
 // enables handling of plus, minus, subtract and divide operators 
@@ -200,12 +195,11 @@ function handleOperator(e) {
   isOperatorPressed = true;
   displayValue = operator;
   document.getElementById("disp").textContent = displayValue;
-  isBackspaceDisabled = false;
 }
 
 // called in handleEquals() to limit display of calculation(s) to 8 characters
 function roundForDisplay(num) {
-  let string = num.toString();
+  let string= num.toString();
   if (string.length > 8) {
     return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
   } else {
