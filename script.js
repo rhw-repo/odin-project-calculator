@@ -7,6 +7,7 @@ let total = 0;
 let displayValue = '';
 let isOperatorPressed = false;
 let isPowerOn = false;
+let isEqualsPressed = false;
 
 const operatorKeys = document.querySelectorAll('.op_btn');
 const numberKeys = document.querySelectorAll('.num_btn');
@@ -15,6 +16,7 @@ const equalButton = document.getElementById('equals');
 const pwrButton = document.getElementById("pwr_btn");
 const backspaceButton = document.getElementById("btn_backspace")
 
+// Maths operations
 // basic maths operations called by operate()
 const add = (num1, num2) => {
   console.log(num1);
@@ -65,6 +67,7 @@ function operate(num1, operator, num2) {
   }
 }
 
+// Event Listeners for Keys
 // enables key to append number key value to display when clicked 
 for (let i = 0; i < numberKeys.length; i++) {
   numberKeys.item(i).addEventListener('click', e => updateDisplay(e));
@@ -116,22 +119,27 @@ function handleClear(e) {
 }
 
 function handleBackspace(e) {
-  if (!isPowerOn) return;
+  if (!isPowerOn || isEqualsPressed) return;
 
-  // If the last character is an operator, remove it.
+  // prevent removal of default zero following use of PWR / CE button
+  if (displayValue === "0") {
+    return;
+  }
+  // if the last char is an operator, remove it.
   if (isOperatorPressed) {
-    displayValue = num1.toString();  // Set displayValue back to num1
-    operator = "";  // Reset the operator
-    isOperatorPressed = false;  // Update the flag
+    // reassign num1 to displayValue 
+    displayValue = num1.toString();
+    // reset the operator  
+    operator = "";  
+    // update 'flag' that tracks whether an operator has been used
+    isOperatorPressed = false;  
   } else {
-    // Remove the last character from displayValue
+    // remove the last number or decimal point from displayValue
     displayValue = displayValue.slice(0, -1);
   }
-
-  // Update the display
+  // update the display
   document.getElementById("disp").textContent = displayValue;
-
-  // Update num1 or num2 based on the current value of operator
+  // update num1 or num2 based on the current value of operator
   if (operator) {
     num2 = parseFloat(displayValue);
   } else {
@@ -139,41 +147,19 @@ function handleBackspace(e) {
   }
 }
 
-/* checks if calculator "turned on", exits if not
-// deletes last character if "C" key clicked 
-function handleBackspace(e) {
-  if (!isPowerOn) return;
-
-  // delete operator if is last char
-  if (isOperatorPressed) {
-    // resets operator ready for further use 
-    operator = "";
-    isOperatorPressed = false; 
-  } else {
-    // remove last char from displayValue
-    displayValue = displayValue.slice(0, -1);
-    document.getElementById("disp").textContent = displayValue;
-
-    if (operator) {
-      num2 = parseFloat(displayValue);
-    } else {
-      num1 = parseFloat(displayValue);
-    }
-  }
-}*/
-
 // checks if calculator "turned on", exits if not
 // responds to user inputs to update display, 
 // based on user input & current state 
 function updateDisplay(e) {
   if (!isPowerOn) return;
+  isEqualsPressed = false;
 
-   // checking if limitation of input to 8 characters max is working
-   console.log("Display Value Length:", displayValue.length);
-   console.log("Display Value:", displayValue);
+  // checking if limitation of input to 8 characters max is working
+  console.log("Display Value Length:", displayValue.length);
+  console.log("Display Value:", displayValue);
 
   // limit input to 8 chars max 
-  if (displayValue.length >=8) {
+  if (displayValue.length >= 8) {
     return;
   }
 
@@ -186,7 +172,7 @@ function updateDisplay(e) {
   if (displayValue === '0' || displayValue === 'Err') {
     displayValue = e.target.textContent;
   } else {
-    // if displayValue not "0" or "Err" append to current displayValue 
+    // if displayValue not "0" or "Error" append to current displayValue 
     displayValue += e.target.textContent;
   }
   // updates display container content
@@ -202,6 +188,9 @@ function updateDisplay(e) {
 // enables handling of plus, minus, subtract and divide operators 
 function handleOperator(e) {
   if (!isPowerOn) return;
+
+  isEqualsPressed = false;
+
   // check for existing calculation, if so -
   // finalize that calculation and prepare for a new operation 
   if (num1 && operator) {
@@ -223,7 +212,7 @@ function handleOperator(e) {
 
 // called in handleEquals() to limit display of calculation(s) to 8 characters
 function roundForDisplay(num) {
-  let string= num.toString();
+  let string = num.toString();
   if (string.length > 8) {
     return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
   } else {
@@ -242,7 +231,11 @@ function handleEquals(e) {
     total = operate(num1, operator, num2);
     // rounds off display of total if exceeds 8 characters  
     let displayTotal = roundForDisplay(total);
+    displayValue = displayTotal;
     document.getElementById("disp").textContent = displayTotal;
+
+    isEqualsPressed = true;
+
     // retain original (full precision) total for any further calculations
     num1 = total;
     num2 = 0;
