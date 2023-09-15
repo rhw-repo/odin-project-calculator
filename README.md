@@ -14,6 +14,8 @@ https://www.theodinproject.com/lessons/foundations-calculator
 - **Google Fonts**: For additional typography styles, specifically Lexend Deca
 , Open Sans, Roboto Slab, and Orbitron.
 
+## Inputs & Outputs
+
 - Inputs: user clicks on buttons or entering numbers and operators with keyboard. 
 - Outputs:'calculator LED display panel' shows user input then the sum's total. 
 
