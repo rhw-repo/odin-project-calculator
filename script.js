@@ -1,5 +1,6 @@
 // TODO: 
 // modify functionality decimal button to avoid floating point calculations
+
 let operator = '';
 let num1 = 0;
 let num2 = 0;
@@ -43,6 +44,9 @@ const multiply = (num1, num2) => {
 }
 
 const divide = (num1, num2) => {
+  if (num2 === 0) {
+    return "Really?";
+  }
   console.log(num1);
   console.log(num2);
   total = num1 / num2;
@@ -59,8 +63,8 @@ function operate(num1, operator, num2) {
   } else if (operator === 'X') {
     return multiply(num1, num2);
   } else if (operator === '/') {
-    if (num1 === 0) {
-      return "Don't B Daft"
+    if (num1 === 0 || num2 === 0) {
+      return "Really?"
     } else {
       return divide(num1, num2);
     }
@@ -82,7 +86,7 @@ equals.addEventListener('click', e => handleEquals(e));
 // enables key to clear all values and the display by calling handleClear()  
 clearButton.addEventListener("click", e => handleClear(e));
 
-// enables key to delete last one number or operator by calling xxxxx()
+// enables key to delete last one character by calling handleBackspace()
 backspaceButton.addEventListener('click', e => handleBackspace(e));
 
 // enables key to simulate "power on & off" by calling handlePWR()
@@ -130,9 +134,9 @@ function handleBackspace(e) {
     // reassign num1 to displayValue 
     displayValue = num1.toString();
     // reset the operator  
-    operator = "";  
+    operator = "";
     // update 'flag' that tracks whether an operator has been used
-    isOperatorPressed = false;  
+    isOperatorPressed = false;
   } else {
     // remove the last number or decimal point from displayValue
     displayValue = displayValue.slice(0, -1);
@@ -226,9 +230,28 @@ function handleEquals(e) {
   if (!isPowerOn) return;
 
   // perform calculation if first number and operator are defined
-  if (num1 && operator) {
+  if (num1 !== null && operator) {
     num2 = parseFloat(displayValue);
+
+    // check if num1 or num2 are not valid numbers
+    if (
+      num1 === null ||
+      operator === null ||
+      num2 === null ||
+      isNaN(num1) ||
+      isNaN(num2)
+    ) {
+      document.getElementById("disp").textContent = "Error";
+      return;
+    }
+
     total = operate(num1, operator, num2);
+    // handles specific "Really?" error message for division with 0
+    if (typeof total === "string") {
+      document.getElementById("disp").textContent = total;
+      return;
+    }
+
     // rounds off display of total if exceeds 8 characters  
     let displayTotal = roundForDisplay(total);
     displayValue = displayTotal;
@@ -241,11 +264,13 @@ function handleEquals(e) {
     num2 = 0;
     operator = null;
     isOperatorPressed = true;
-    // convert total to string for consistent handling of dislay values
+    // convert total to string for consistent handling of display values
     // and calculations (example: floating point calculations)
     displayValue = total.toString();
   } else {
     document.getElementById("disp").textContent = "Error";
   }
 }
+
+
 
