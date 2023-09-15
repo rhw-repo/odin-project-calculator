@@ -6,35 +6,85 @@ GUI representing the face of a traditional handheld calculator:
 
 Buttons for numbers through 0-9
 Buttons for add, subtract, multiply, divide and 'equals'
-Buttons to 'delete' any mistake when clicking on keys and another to "clear" the display and the calculator 'memory' to start afresh
+Buttons to 'delete' any mistake when clicking on keys and another to "clear"
+the display and the calculator 'memory' to start afresh
+Keys visibly depress on click 
+Representation of LED number display, within a vertical rectangular container
+(the calculator's plastic 'casing')
 
-Representation of LED number display, within a vertical rectangular container (the calculator plastic 'casing')
-
-//HTML, CSS, Javascript
+// Javascript
 Functionality: 
 Maths operations 
-Keys visibly depress on click 
-Numbers and sum results appear in display  
+Numbers, operators and calculation results appear in display  
+Last number or operator can be cleared
+All values can be cleared
+One decimal point can be used per number input before operator
 
 // HTML, JavaScript
 Input: 
-user input (numbers) by clicking on calculator buttons 
+User input (numbers, decimal point & operators) by clicking on calculator buttons 
 
 //HTML, CSS, JavaScript
 Output: 
-number in 'calculator' display 
+Number(s), decimal point and operators in 'calculator' display 
+Any error messages
 
-Inputs / Outputs 
+User Inputs vs Program Outputs 
 
-1) When the user inputs a number by clicking on a number button, it shows in the display
-2) When the user inputs an operator (+ - * /) it also shows in the display
-3) When the user inputs a second number, it also shows in the display
-4) When the user clicks on the equals button, calculate & display the sum created by all input if order was 1), 2), 3)   
-5) When the user clicks on the clear button, delete all values and reset the display to '0'
+1) Click on the power "PWR" button once
+= calculator functions will now execute as required
+
+2) Click on the power "PWR" button a second time
+= calculator functions will not execute as required
+
+3) Click on a number button (including after click on operator or "C" button)
+= corresponding number shows in the display 
+
+4) Click on an operator button 
+= corresponding operator shows in the display
+
+5) Click on a number button after an operator 
+= corresponding number shows in the display
+
+6) Click on the decimal point "." button after a number button 
+= one decimal point shows in the display 
+
+7) Click on the equals button 
+= calculate & display the sum created by all input providing sequence was: 
+
+A) Click on power "PWR" button once on page load
+- or following a previous click on it if page already loaded
+
+B) Click on number button, potentially followed by: 
+- clear "C" button providing followed a minimum of one number button
+- and / or further number buttons and then possibly clear "C" button 
+- and / or decimal point "." button once and then possibly clear "C" button
+
+C) Click on one operator button once, potentially followed by:
+- the clear "C" button provided followed by one operator button once
+
+D) Click on number button, potentially followed by: 
+- clear "C" button providing followed a minimum of one number button
+- and / or further number buttons and then possibly clear "C" button 
+- and / or decimal point "." button once and then possibly clear "C" button
+
+sequence can continue in this pattern 
+integer created - one operator - integer created 
+
+until 
+
+E) Click on equals button at least once  
+
+9) Click on the clear "C" button
+= delete the last value (number or operator)
+
+10) Click on the clear everything "CE" button 
+= delete all values and reset the display to '0'
 
 
 Steps
 
+// Barebones maths function
 // JavaScript
 1) Functions and test in console 
 add
@@ -42,40 +92,149 @@ subtract
 multiply
 divide
 
-2) "Function 'operate' that takes an operator and 2 numbers and then calls one of the above functions on the numbers", test in console // JavScript 
+// Barebones maths function
+// JavaScript
+2) "Function "operate" that takes an operator and 2 numbers 
+and then calls one of the above functions passing in the numbers 
+and operators. Test for accuracy in console  
 
 
-// HTML
-// CSS (style colourways, rounded corners, size, animation & layout)
+// User Interface (UI) 
+// HTML (project title, containers, buttons, copyright statement)
+// CSS (style colors, fonts, borders, size, animation & layout)
 3) Represent the face of a traditional handheld calculator with:
 
     buttons numbered 0 through 9
-    + - / *   and = buttons
-    animation  (visible button depression on click)
-    'LED display'     
-    'clear' button
-    delete button for mistakes trying to click on desired buttons
-    . (decimal point) button 
-
-
-// HTML, JavaScript
-4) Function renders number in display onclick (number buttons), store value displayed in variable  // HTML, JavaScript
-
-on click clear button 'deletes' existing values to  & renders "0" in display
-
-"=" button does not do anything if operation() not called 
-
-Delete button removes any value input immediately before it
-
-. (decimal point) button disabled after one click . per number input before operand chosen and one click. per number afterwards (cannot produce 1.2.3 x 4.5.6, for example, only 1.2 x 4.5)
-
-
-5) Function stores values on number button click, on operand button click, on number button click,  then calls operation() 
-   Else renders an error message if input uses a 0 to divide by 
-   Render result in display on "=" button click with number rounded to manageable sized row of decimal places 
-   Sequence can be repeated using result as first value in next operation
+    "+" "-" "/" "x"   and "=" buttons
+    animation to make visible button depression on click
+    "LED display"     
+    "clear everything" "CE" button
+    clear "C" button to clear the one last input character
+    decimal point "." button 
 
 
 // JavaScript
-6. New function calls function 5) when user presses key (onkeydown) corresponding to a number or maths operator. 
-   User has choice of clicking on buttons or pressing keys on keyboard. 
+4) Functions planning:
+
+// POWER ON AND OFF
+
+handlePWR(e = power on/off button "PWR" clicked)
+FIRES WHEN:
+Clicking power on/off button "PWR" 
+addEventListener to power on/off button "PWR"  button on click  
+PURPOSE:
+Simulates "power on & off" by only enabling input & display if "on"
+BRIEF OUTLINE:
+checks for flag isPowerOn
+if not present, disables other buttons and functionality 
+assigns !isPowerOn to the flag at end of function to toggle on/off states
+
+
+// INPUTS AND DISPLAY
+
+updateDisplay(e = number or decimal point button clicked)
+FIRES WHEN:
+Clicking a number or decimal button
+for loop added EventListener to each number or decimal button on click  
+PURPOSE:
+makes it's value appear in the display
+BRIEF OUTLINE:
+for loop added EventListener to each number or decimal button on click 
+store value in displayValue
+displayValue rounded to manageable size for size of display container 
+
+handleOperator(e = operator "+" "-" "X" "/" button clicked)
+FIRES WHEN:
+Clicking an operator button 
+for loop added EventListener to each operator button on click  
+PURPOSE:
+makes it's value appear in the display, if preceding input is integer
+BRIEF OUTLINE:
+store value in displayValue
+displayValue rounded to manageable size for size of display container
+button disabled anytime input pattern does not match "integer operator"
+
+roundForDisplay(num)
+FIRES WHEN:
+called from handleEquals()
+PURPOSE: 
+rounds result of calculations if number length exceeds display space on screen
+BRIEF OUTLINE:
+converts number to string
+checks if string length greater than 8 characters 
+if so, rounds to 8 characters 
+
+handleBackspace(e = clear "C" button clicked) 
+FIRES WHEN:
+Clicking clear "C" button 
+addEventListener to clear "C"  button on click 
+PURPOSE:
+"deletes" last input character immediately before it
+BRIEF OUTLINE:
+removes last character from displayValue with slice()
+clear "C" button disabled unless input is "integer clear" / "operator clear" 
+
+
+// MATHS CALCULATIONS 
+
+handleEquals(e = equals "=" button clicked)
+FIRES WHEN:
+Clicking equals button "=" 
+PURPOSE: 
+Calculation of any sum when preceeding input sequence is correct
+BRIEF OUTLINE:
+if power on
+and if input sequence pattern correct 
+calls operate() 
+stores full length total (example 6.8000000001) for use in further calculations
+displayTotal rounded to manageable size for size of display container 
+else if incorrect input sequence, sends error message to display 
+
+operate(num1, operator, num2) 
+FIRES WHEN:
+Called by handleEquals()
+PURPOSE: 
+Calculation of any sum using basic maths operators
+BRIEF OUTLINE:
+performs maths operation according to operator or
+returns error message if dividing by 0 
+
+
+// RESETS
+
+handleClear(e = clear everything "CE" button clicked)
+FIRES WHEN:
+Clicking clear everything "CE" button 
+PURPOSE:
+"deletes" all existing values & makes "0" appear in display
+BRIEF OUTLINE:
+resets all values to 0 or null
+displayValue therefore appends to display as "0"
+
+
+// TODO: 
+
+// PREVENT FLOATING POINT DECIMALS
+handleDecimal(e = decimal point "." button clicked)
+FIRES WHEN:
+Clicking Decimal point "." button
+addEventListener to decimal button on click  
+PURPOSE: 
+limit to one decimal point to prevent creating floating decimal point numbers 
+(cannot produce 1.2.3 x 4.5.6, for example, only 1.2 x 4.5)
+BRIEF OUTLINE:
+disables decimal point "." button after one click for each number input before
+operand chosen, after operand chosen and after operate() has fired 
+maintain's button's disabled status until a brand new number input starts 
+
+// PREVENT OPERATOR AS LEADING DIGIT IF NO PREV INTEGER
+handleOperator()
+bugfix - add a check to see if there is an integer
+if so allow function to execute 
+else exit function
+
+
+// TODO: JavaScript
+6. New function calls functions 5) when user presses key (onkeydown) 
+   corresponding to a number or maths operator. 
+   Gives user choice of clicking on buttons or pressing keys on keyboard. 
