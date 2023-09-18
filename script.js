@@ -174,7 +174,7 @@ function updateDisplay(e) {
     isOperatorPressed = false;
   }
   // prevent 0 from being leading digit
-  if (displayValue === "0" || displayValue === "Err") {
+  if (displayValue === "0" || displayValue === "Error") {
     displayValue = e.target.textContent;
   } else {
     // if displayValue not "0" or "Error" append to current displayValue 
