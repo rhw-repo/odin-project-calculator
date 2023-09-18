@@ -1,19 +1,17 @@
-// TODO: 
-// modify functionality decimal button to avoid floating point calculations
-
-let operator = '';
+// TODO: possibly add keyboard support 
+let operator = "";
 let num1 = 0;
 let num2 = 0;
 let total = 0;
-let displayValue = '';
+let displayValue = "";
 let isOperatorPressed = false;
 let isPowerOn = false;
 let isEqualsPressed = false;
 
-const operatorKeys = document.querySelectorAll('.op_btn');
-const numberKeys = document.querySelectorAll('.num_btn');
-const clearButton = document.getElementById('btn_clr');
-const equalButton = document.getElementById('equals');
+const operatorKeys = document.querySelectorAll(".op_btn");
+const numberKeys = document.querySelectorAll(".num_btn");
+const clearButton = document.getElementById("btn_clr");
+const equalButton = document.getElementById("equals");
 const pwrButton = document.getElementById("pwr_btn");
 const backspaceButton = document.getElementById("btn_backspace")
 
@@ -56,13 +54,13 @@ const divide = (num1, num2) => {
 
 // calls appropriate basic maths function according to operator 
 function operate(num1, operator, num2) {
-  if (operator === '+') {
+  if (operator === "+") {
     return add(num1, num2);
-  } else if (operator === '-') {
+  } else if (operator === "-") {
     return subtract(num1, num2);
-  } else if (operator === 'X') {
+  } else if (operator === "X") {
     return multiply(num1, num2);
-  } else if (operator === '/') {
+  } else if (operator === "/") {
     if (num1 === 0 || num2 === 0) {
       return "Really?"
     } else {
@@ -74,20 +72,20 @@ function operate(num1, operator, num2) {
 // Event Listeners for Keys
 // enables key to append number key value to display when clicked 
 for (let i = 0; i < numberKeys.length; i++) {
-  numberKeys.item(i).addEventListener('click', e => updateDisplay(e));
+  numberKeys.item(i).addEventListener("click", e => updateDisplay(e));
 }
 // enables key to append operator key value to display when clicked 
 for (let i = 0; i < operatorKeys.length; i++) {
-  operatorKeys.item(i).addEventListener('click', e => handleOperator(e));
+  operatorKeys.item(i).addEventListener("click", e => handleOperator(e));
 }
 //  enables key to equate the sum when clicked by calling handleEquals()
-equals.addEventListener('click', e => handleEquals(e));
+equals.addEventListener("click", e => handleEquals(e));
 
 // enables key to clear all values and the display by calling handleClear()  
 clearButton.addEventListener("click", e => handleClear(e));
 
 // enables key to delete last one character by calling handleBackspace()
-backspaceButton.addEventListener('click', e => handleBackspace(e));
+backspaceButton.addEventListener("click", e => handleBackspace(e));
 
 // enables key to simulate "power on & off" by calling handlePWR()
 pwrButton.addEventListener("click", e => handlePWR(e));
@@ -135,7 +133,7 @@ function handleBackspace(e) {
     displayValue = num1.toString();
     // reset the operator  
     operator = "";
-    // update 'flag' that tracks whether an operator has been used
+    // update "flag" that tracks whether an operator has been used
     isOperatorPressed = false;
   } else {
     // remove the last number or decimal point from displayValue
@@ -151,12 +149,15 @@ function handleBackspace(e) {
   }
 }
 
-// checks if calculator "turned on", exits if not
-// responds to user inputs to update display, 
-// based on user input & current state 
+// updates display based on input & currrent state
+// first checks if calculator "turned on", exits if not
 function updateDisplay(e) {
   if (!isPowerOn) return;
   isEqualsPressed = false;
+  // limits input to one decimal point per number
+  if (e.target.textContent === "." && displayValue.includes(".")) {
+    return;
+  }
 
   // checking if limitation of input to 8 characters max is working
   console.log("Display Value Length:", displayValue.length);
@@ -168,12 +169,12 @@ function updateDisplay(e) {
   }
 
   if (isOperatorPressed) {
-    displayValue = '';
+    displayValue = "";
     // resets state of isOperatorPressed ready for next inputs
     isOperatorPressed = false;
   }
   // prevent 0 from being leading digit
-  if (displayValue === '0' || displayValue === 'Err') {
+  if (displayValue === "0" || displayValue === "Err") {
     displayValue = e.target.textContent;
   } else {
     // if displayValue not "0" or "Error" append to current displayValue 
