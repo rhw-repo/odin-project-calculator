@@ -17,7 +17,7 @@ https://www.theodinproject.com/lessons/foundations-calculator
 ## Inputs & Outputs
 
 - Inputs: user clicks on buttons.
-- Outputs:'calculator LED display panel' shows user input then the sum's total. 
+- Outputs: 'calculator LED display panel' shows user input then the sum's total. 
 
  ## License
 
