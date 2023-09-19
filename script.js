@@ -219,7 +219,7 @@ function handleOperator(e) {
 function roundForDisplay(num) {
   let string = num.toString();
   if (string.length > 8) {
-    return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
+    return num.toExponential(4); 
   } else {
     return string;
   }
@@ -247,6 +247,7 @@ function handleEquals(e) {
     }
 
     total = operate(num1, operator, num2);
+    console.log("Internal total: " + total)
     // handles specific "Really?" error message for division with 0
     if (typeof total === "string") {
       document.getElementById("disp").textContent = total;
