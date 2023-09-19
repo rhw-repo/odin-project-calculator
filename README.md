@@ -3,7 +3,7 @@ https://www.theodinproject.com/lessons/foundations-calculator
 
 - Main branch currently contains work in progress.
 - Project was paused for approx 12 months while building another full stack app. 
-- Basic mathematical operations are unit-tested in the code.
+- Basic mathematical operations are manually tested for now.
 - Other branches show early steps in 'development process', ideas, experiments. 
 
 ## Technologies Used:
