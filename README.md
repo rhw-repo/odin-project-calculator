@@ -1,18 +1,15 @@
 ### The Odin Project Foundations - Project: Make An Online Calculator 
-https://www.theodinproject.com/lessons/foundations-calculator
 
-- Main branch currently contains work in progress.
-- Project was paused for approx 12 months while building another full stack app. 
-- Basic mathematical operations are manually tested for now.
-- Other branches show early steps in 'development process', ideas, experiments. 
+Check out the live demo [here](https://rhw-repo.github.io/odin-project-calculator/).
+
+Check out the project instructions [here](https://www.theodinproject.com/lessons/foundations-calculator).
 
 ## Technologies Used:
 
 - **HTML5**: Structure of the calculator.
 - **CSS3**: Styling and layout. Used flexbox and grid for layouts. 
 - **JavaScript**: For the calculator's functionality.
-- **Google Fonts**: For additional typography styles, specifically Lexend Deca
-, Open Sans, Roboto Slab, and Orbitron.
+- **Google Fonts**: Includes Open Sans, Roboto Slab, and Orbitron for typography.
 
 ## Inputs & Outputs
 

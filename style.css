@@ -21,9 +21,10 @@ body {
       #333333 100%);
 }
 
+/* project title and copyright notice */
 h1,
 h2,
-h5 {
+.copyright {
   font-family: 'Roboto Slab', serif, 'Open Sans', sans-serif;
   color: #ffffff;
 }
@@ -34,17 +35,13 @@ h5 {
   display: grid;
   width: 25rem;
   height: 37.5rem;
-  border: solid 0.313rem #ffffff;
+  border: solid 0.313rem #D3C18F;
   background-color: hsl(132, 6%, 83%);
   border-radius: 10%;
-  justify-content: space-center;
   align-items: center;
   margin: 1rem auto 2rem auto;
   padding-top: 1.25rem;
   padding-bottom: 1.875rem;
-  box-shadow:
-    3px 3px 6px rgba(0, 0, 0, 0.2),
-    -3px -3px 6px rgba(255, 255, 255, 0.1);
 }
 
 /* the calculator's simulation of an "LED display" */
@@ -72,7 +69,7 @@ h5 {
 /* div housing the buttons */
 .btn_container {
   display: grid;
-  grid-template-columns: 70px 70px 70px 70px;
+  grid-template-columns: repeat(4, 4.375rem);
   justify-content: space-evenly;
 }
 
@@ -82,14 +79,14 @@ h5 {
   width: 3.125rem;
   height: 3.125rem;
   margin: 0.5rem;
-  font-family: "Poppins", "Roboto", Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
 
-/* general button active state rules */
+/* key pressed effect on button click */
 .btn_container button:active {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 0.3125rem 0.3125rem 0 0 #666;
@@ -98,15 +95,16 @@ h5 {
 
 /* number buttons */
 .num_btn {
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   color: black;
 }
 
 .num_btn:hover {
-  background-color: #f2f2f2;
+  background-color: #e0e0e0 ;
 }
 
 .num_btn:active {
+  background-color: #d0d0d0; 
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
   transform: translateY(0.375rem);
 }
@@ -114,7 +112,7 @@ h5 {
 /* utility and operator buttons */
 .util_btn,
 .op_btn {
-  background-color: #D3D9B6;
+  background-color: #DACAA6;
 }
 
 .util_btn:hover,
@@ -127,7 +125,7 @@ h5 {
   font-size: 1.25rem;
 }
 
-/* power button */
+/* black power button */
 .pwr_btn {
   background-color: black;
   color: #ffffff;
@@ -144,8 +142,16 @@ h5 {
   width: auto;
   background-color: #FFA500;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
+  border-radius: 10%;
 }
 
 #equals:hover {
   background-color: #ffbb33;
+}
+
+/* copyright notice */
+.copyright {
+  font-size: 1rem; 
+  margin-top: 0.67em; 
+  margin-bottom: 0.67em; 
 }
