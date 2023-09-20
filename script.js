@@ -18,26 +18,26 @@ const backspaceButton = document.getElementById("btn_backspace")
 // Maths operations
 // basic maths operations called by operate()
 const add = (num1, num2) => {
-  console.log(num1);
-  console.log(num2);
+  // console.log(num1);
+  // console.log(num2);
   total = num1 + num2;
-  console.log(total);
+  // console.log(total);
   return total;
 }
 
 const subtract = (num1, num2) => {
-  console.log(num1);
-  console.log(num2);
+  // console.log(num1);
+  // console.log(num2);
   total = num1 - num2;
-  console.log(total);
+  // console.log(total);
   return total;
 }
 
 const multiply = (num1, num2) => {
-  console.log(num1);
-  console.log(num2);
+ // console.log(num1);
+ // console.log(num2);
   total = num1 * num2;
-  console.log(total);
+ // console.log(total);
   return total;
 }
 
@@ -45,10 +45,10 @@ const divide = (num1, num2) => {
   if (num2 === 0) {
     return "Really?";
   }
-  console.log(num1);
-  console.log(num2);
+ // console.log(num1);
+  //console.log(num2);
   total = num1 / num2;
-  console.log(total);
+  //console.log(total);
   return total;
 }
 
@@ -78,19 +78,19 @@ for (let i = 0; i < numberKeys.length; i++) {
 for (let i = 0; i < operatorKeys.length; i++) {
   operatorKeys.item(i).addEventListener("click", e => handleOperator(e));
 }
-//  enables key to equate the sum when clicked by calling handleEquals()
+//  enables key to equate the sum when clicked 
 equals.addEventListener("click", e => handleEquals(e));
 
-// enables key to clear all values and the display by calling handleClear()  
+// enables key to clear all values and the display when clicked
 clearButton.addEventListener("click", e => handleClear(e));
 
-// enables key to delete last one character by calling handleBackspace()
+// enables key to delete last one character when clicked
 backspaceButton.addEventListener("click", e => handleBackspace(e));
 
-// enables key to simulate "power on & off" by calling handlePWR()
+// enables key to simulate "power on & off" when clicked
 pwrButton.addEventListener("click", e => handlePWR(e));
 
-// simulates "power on & off" by only enabling input & display if "on"
+// simulates "power on & off", enabling input & display only if "power is on"
 function handlePWR(e) {
   if (isPowerOn) {
     displayValue = "";
@@ -109,13 +109,13 @@ function handlePWR(e) {
 function handleClear(e) {
   if (!isPowerOn) return;
   num1 = 0;
-  console.log(num1);
+  // console.log(num1);
   num2 = 0;
-  console.log(num2);
+  // console.log(num2);
   total = 0;
-  console.log(total);
+  // console.log(total);
   isOperatorPressed = false;
-  console.log(isOperatorPressed);
+  // console.log(isOperatorPressed);
   displayValue = "0";
   document.getElementById("disp").textContent = displayValue;
 }
@@ -133,7 +133,7 @@ function handleBackspace(e) {
     displayValue = num1.toString();
     // reset the operator  
     operator = "";
-    // update "flag" that tracks whether an operator has been used
+    // update this "flag" that tracks whether an operator has been used
     isOperatorPressed = false;
   } else {
     // remove the last number or decimal point from displayValue
@@ -159,9 +159,9 @@ function updateDisplay(e) {
     return;
   }
 
-  // checking if limitation of input to 8 characters max is working
-  console.log("Display Value Length:", displayValue.length);
-  console.log("Display Value:", displayValue);
+  // uncomment to check limitation of input to 8 chars works
+  // console.log("Display Value Length:", displayValue.length);
+  // console.log("Display Value:", displayValue);
 
   // limit input to 8 chars max 
   if (displayValue.length >= 8) {
@@ -217,13 +217,19 @@ function handleOperator(e) {
 
 // called in handleEquals() to limit display of calculation(s) to 8 characters
 function roundForDisplay(num) {
-  let string = num.toString();
-  if (string.length > 8) {
-    return parseFloat(num.toFixed(8 - string.indexOf("."))).toString();
-  } else {
-    return string;
+  let str = num.toString();
+  if (str.length <= 8) {
+    return str;
   }
+
+  let rounded = parseFloat(num.toPrecision(6)).toString();
+  if (rounded.length <= 8) {
+    return rounded;
+  }
+
+  return num.toExponential(3);
 }
+
 
 // when equals button clicked, checks if calculator is "turned on", if so - 
 // completes calculation, updates display, prepares for any further operations 
@@ -247,6 +253,7 @@ function handleEquals(e) {
     }
 
     total = operate(num1, operator, num2);
+    // console.log("Internal total: " + total)
     // handles specific "Really?" error message for division with 0
     if (typeof total === "string") {
       document.getElementById("disp").textContent = total;

@@ -52,6 +52,7 @@ h5 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  overflow: hidden;
   background: linear-gradient(to right, #666666, #333333);
   text-align: right;
   box-shadow: 0 0 0.625rem #999,
