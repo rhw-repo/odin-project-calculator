@@ -217,13 +217,20 @@ function handleOperator(e) {
 
 // called in handleEquals() to limit display of calculation(s) to 8 characters
 function roundForDisplay(num) {
-  let string = num.toString();
-  if (string.length > 8) {
-    return num.toExponential(4); 
-  } else {
-    return string;
+  let str = num.toString();
+  if (str.length <= 8) {
+    return str;
   }
+
+  let rounded = parseFloat(num.toPrecision(6)).toString();
+
+  if (rounded.length <= 8) {
+    return rounded;
+  }
+
+  return num.toExponential(3); 
 }
+
 
 // when equals button clicked, checks if calculator is "turned on", if so - 
 // completes calculation, updates display, prepares for any further operations 
