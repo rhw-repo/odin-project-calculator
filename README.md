@@ -6,7 +6,7 @@ Check out the project instructions [here](https://www.theodinproject.com/lessons
 
 ## Technologies Used:
 
-- **HTML5**: Structure of the calculator.
+- **HTML5**: Structure of the calculator keys, display & casing.
 - **CSS3**: Styling and layout. Flexbox and grid for layouts. 
 - **JavaScript**: event listeners, DOM manipulation, mathematical operations, scientific notation, error handling.
 - **Google Fonts**: Includes Open Sans, Roboto Slab, and Orbitron.
